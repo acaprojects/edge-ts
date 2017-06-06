@@ -32,21 +32,3 @@ export function isElectron(environment = runtime) {
 
     return attempt(inRenderer, false) || attempt(inBackground, false);
 }
-
-/**
- * Checks if we're running on a supported platform for the SDK interop.
- */
-export function isSupportedPlatform(environment = runtime) {
-    const supported = () => environment.process.platform === 'win32';
-
-    return attempt(supported, false);
-}
-
-/**
- * Check if the mock client should be used in place of the live bindings.
- */
-export function useMock(environment = runtime) {
-    const mock = () => !!environment.process.env.MOCK_SKYPE_CLIENT;
-
-    return attempt(mock, true);
-}
