@@ -1,7 +1,7 @@
 language: node_js
 
 node_js:
-- 'node'
+- node
 - '7'
 
 script: gulp
@@ -9,3 +9,15 @@ script: gulp
 after_success:
 - npm install -g codeclimate-test-reporter
 - codeclimate-test-reporter < coverage/lcov.info
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: "$GITHUB_TOKEN"
+  local_dir: docs
+  on:
+    branch: master
+
+env:
+  matrix:
+    secure: fruD3CAy4JP8l/cuPxZRsK3Zz7WYgJnBpmj7tPUsXJ9K9V688puVjJD/pQ6/bgYN62UuoZUEc+ULR7xjWVDGwuAhv0vTR0DgVOS0U7rwTBpWUopxx0gm7QGXinzEM2Upn5b7yXwBK5uY90C0AH6iGWahMn5LhAZnqeVMcw258LjXXM3jvDor0ucQ9lqwBTg7f15J3Lh/ibzLcXDSyJtionvYW/hFmxGX8asrgL8YeGoCq7xR9l2RXafYQpWlLnC7+KvZb8NCflzW7Os5e4W4QvnKFrtmaQxNgDARLE8Yygt+ponOfXdRHoDQY0eeeAcA2HuctGzM/f1lg8tLRc+n6FGvpHl4dg0Zxldnxn8rrsV3BZsGK2jTqITHBvLlT/DSaFMgQV0fVcq+PhneJgFLXaLSX118056bFyYfMOA09bIU4IpQUjJyvCd/VScs2DaGOeTJQ/lI+NbzfVeVFqYBfnZWAeF9u6t4WDr79BBmWnroXS4wdB8IfHmdeeraN3kxysAPCyntd/nBrrLhtTBu+3H0giREyaz3TzX9QP+QJMl7aEJq1t+THT9RR32c8pfTxInHqaYdYvb3WHShYe5Sjqu1+VgGOmpSGSJN5zG9cGVgMJEK4sFcGH7GPWjzrS7HB77fEA99xD3BDOLWrB6NrqFkuUiHrYjVhoFroKSh4dM=
