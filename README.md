@@ -36,7 +36,7 @@ interface InputArgs {
 const meaning = async<InputArgs, number>({
     assemblyFile: 'DeepThought.dll',
     typeName: 'FooBar.MyType',
-    methodName: 'MyMethod' // This must be Func<object,Task<object>>
+    methodName: 'MyMethod' // This must be Func<object, Task<object>>
 });
 ```
 
@@ -55,11 +55,11 @@ meaning({life: 'test', universe: true, everything: someOtherValue})
 
 ### Binding Targets
 
-Bindings can be created to precompiled libraries (*.dll's) or source to compiled at runtime by edge. Regardless of compile time, the targetted method must be of type `Func<object,Task<object>>`.
+Bindings can be created to precompiled libraries (*.dll's) or source to compiled at runtime by edge. Regardless of compile time, the targetted method must be of type `Func<object, Task<object>>`.
 
 #### Source
 
-Simple C# source to be compiled at runtime can be writen inline as a string:
+C# source can be writen inline (as a string) as lamda expressions:
 
 ```typescript
 const test = async<string, string>(`
@@ -69,7 +69,24 @@ const test = async<string, string>(`
 `);
 ```
 
-Or shifted out to a seperate file:
+As full classes:
+
+```typescript
+const test = async<string, string>(`
+using System.Data;
+using System.Threading.Tasks;
+
+public class Startup
+{
+    public async Task<object> Invoke(object input)
+    {
+        // ...
+    }
+}
+`);
+```
+
+Or referenced as an external file:
 
 ```typescript
 const test = async<string, string>({
@@ -93,7 +110,7 @@ const test = async<string, string>({
 });
 ```
 
-Or if you're happy with the defaults, just the path to the asssembly:
+Or, if you're happy with the defaults, just the path to the asssembly:
 
 ```typescript
 const test = async<string, string>('MyAssembly.dll');
