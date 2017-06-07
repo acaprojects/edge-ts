@@ -5,7 +5,7 @@
 [![Dependencies Status](https://david-dm.org/acaprojects/edge-ts/status.svg)](https://david-dm.org/acaprojects/edge-ts)
 [![npm version](https://badge.fury.io/js/edge-ts.svg)](https://badge.fury.io/js/edge-ts)
 
-Strongly typed .NET bindings with Node.js.
+Create strongly typed .NET bindings from Node.js.
 
 In-process interop powered by the awesome [edge.js](https://github.com/tjanczuk/edge).
 
@@ -55,11 +55,11 @@ meaning({life: 'test', universe: true, everything: someOtherValue})
 
 ### Binding Targets
 
-Bindings can be created to precompiled libraries (*.dll's) or source to compiled at runtime by edge. Regardless of compile time, the targetted method must be of type `Func<object, Task<object>>`.
+Bindings can be created to precompiled libraries (*.dll's) or source to be compiled at runtime by edge. Regardless of compile time, the targeted method must be of type `Func<object, Task<object>>`.
 
 #### Source
 
-C# source can be writen inline (as a string) as lamda expressions:
+C# source can be written in-line (as a string) as lambda expressions:
 
 ```typescript
 const test = async<string, string>(`
@@ -73,16 +73,16 @@ As full classes:
 
 ```typescript
 const test = async<string, string>(`
-using System.Data;
-using System.Threading.Tasks;
+    using System.Data;
+    using System.Threading.Tasks;
 
-public class Startup
-{
-    public async Task<object> Invoke(object input)
+    public class Startup
     {
-        // ...
+        public async Task<object> Invoke(object input)
+        {
+            // ...
+        }
     }
-}
 `);
 ```
 
@@ -91,7 +91,7 @@ Or referenced as an external file:
 ```typescript
 const test = async<string, string>({
     source: 'Foo.cs',
-    typeName: 'MyType',             // optional, defualts to 'StartUp'
+    typeName: 'MyType',             // optional, defaults to 'StartUp'
     methodName: 'MyMethod',         // optional, defaults to 'Invoke'
     references: ['MyOtherLib.dll'], // optional (any external assemblies required)
 });
@@ -104,13 +104,13 @@ Precompiled targets take a similar form:
 ```typescript
 const test = async<string, string>({
     assemblyFile: 'MyAssembly.dll',
-    typeName: 'MyType',             // optional, defualts to 'StartUp'
+    typeName: 'MyType',             // optional, defaults to 'StartUp'
     methodName: 'MyMethod',         // optional, defaults to 'Invoke'
     references: ['MyOtherLib.dll'], // optional (any external assemblies required)
 });
 ```
 
-Or, if you're happy with the defaults, just the path to the asssembly:
+Or, if you're happy with the defaults, just the path to the assembly:
 
 ```typescript
 const test = async<string, string>('MyAssembly.dll');
@@ -121,9 +121,11 @@ const test = async<string, string>('MyAssembly.dll');
 
 ### `async<I, O>(«binding target»)`
 
-Create a asynchronous function, bound to a CLR/.NET Core/Mono method.
+Create an asynchronous function, bound to a CLR/.NET Core/Mono method.
 
-The returned function accepts an input (of type `I`) and an (optional) Node style callback (`error: Error | null, result?: O) => void`. Or, if you prefer working with promises, a `Promise<O>` is also returned.
+The returned function accepts an input (of type `I`) and returns a Promise (of type `O`).
+
+Alternatively a (Node style callback)[https://nodejs.org/api/errors.html#errors_node_js_style_callbacks] may be passed as a second argument.
 
 ```typescript
 const myAsyncBinding = async<number, string>('FooBar.dll');
@@ -158,8 +160,8 @@ doSomthing(mySyncBinding(123));
 
 ### `proxy<I, O>(«func»)`
 
-Functions may also be passed to the CLR to allow it to call back into Node. These must be of a [specific form expected by edge](https://github.com/tjanczuk/edge#how-to-call-nodejs-from-c). `proxy(..)` may be used to transform a function of type `I => O` into this.
+Functions may also be passed to the CLR to allow it to call back into Node. These must be of a [specific form expected by edge](https://github.com/tjanczuk/edge#how-to-call-nodejs-from-c). `proxy(..)` may be used to transform a function of type `I => O` into this form.
 
 ---
 
-For further information on marshalling data between the environments, refer to the [edge.js guide](https://github.com/tjanczuk/edge#how-to-marshal-data-between-c-and-nodejs)
+For further information on marshaling data between the environments, refer to the [edge.js guide](https://github.com/tjanczuk/edge#how-to-marshal-data-between-c-and-nodejs)
