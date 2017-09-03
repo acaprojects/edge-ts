@@ -63,8 +63,8 @@ C# source can be written in-line (as a string) as lambda expressions:
 
 ```typescript
 const test = async<string, string>(`
-    async (input) => { 
-        return ".NET Welcomes " + input.ToString(); 
+    async (input) => {
+        return ".NET Welcomes " + input.ToString();
     }
 `);
 ```
@@ -125,7 +125,7 @@ Create an asynchronous function, bound to a CLR/.NET Core/Mono method.
 
 The returned function accepts an input (of type `I`) and returns a Promise (of type `O`).
 
-Alternatively a (Node style callback)[https://nodejs.org/api/errors.html#errors_node_js_style_callbacks] may be passed as a second argument.
+Alternatively a [Node style callback](https://nodejs.org/api/errors.html#errors_node_js_style_callbacks) may be passed as a second argument.
 
 ```typescript
 const myAsyncBinding = async<number, string>('FooBar.dll');
