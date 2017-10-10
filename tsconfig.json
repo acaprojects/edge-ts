@@ -1,15 +1,15 @@
 {
   "compilerOptions": {
+    "target": "ES6",
     "outDir": "dist",
-    "baseUrl": "src",
-    "typeRoots": ["node_modules/@types"],
-    "target": "es6",
     "module": "commonjs",
     "declaration": true,
-    "moduleResolution": "node",
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "sourceMap": true
+    "moduleResolution": "Node",
+    "strict": true,
+    "noImplicitAny": false,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedParameters": true
   },
   "include": [
     "src/**/*.ts"
