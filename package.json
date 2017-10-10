@@ -23,7 +23,7 @@
     "lint": "tslint -p . --type-check",
     "test": "nyc mocha --opts mocha.opts",
     "compile": "tsc",
-    "doc": "typedoc --out docs src --name powerbi-responsive --readme README.md --excludeNotExported --includeDeclarations --target ES6",
+    "doc": "typedoc --out docs src --name edge-ts --readme README.md --excludeNotExported --includeDeclarations --target ES6",
     "build": "npm-run-all clean -p lint compile test doc",
     "prepare": "npm run build"
   },
