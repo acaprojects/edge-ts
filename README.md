@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/acaprojects/edge-ts.svg?branch=master)](https://travis-ci.org/acaprojects/edge-ts)
 [![Code Climate](https://codeclimate.com/github/acaprojects/edge-ts/badges/gpa.svg)](https://codeclimate.com/github/acaprojects/edge-ts)
 [![Dependencies Status](https://david-dm.org/acaprojects/edge-ts/status.svg)](https://david-dm.org/acaprojects/edge-ts)
+[![Dev Dependencies Status](https://david-dm.org/acaprojects/edge-ts/dev-status.svg)](https://david-dm.org/acaprojects/edge-ts?type=dev)
 [![npm version](https://badge.fury.io/js/edge-ts.svg)](https://badge.fury.io/js/edge-ts)
 
 Create strongly typed .NET bindings from Node.js.
