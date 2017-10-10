@@ -68,7 +68,7 @@
     "typescript": "^2.5.3"
   },
   "dependencies": {
-    "edge": "^7.10.1",
+    "edge": "github:tjanczuk/edge#semver:^8.2.1",
     "electron-edge": "^6.5.5"
   }
 }
