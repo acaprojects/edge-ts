@@ -3,7 +3,7 @@ import { isElectron } from './runtime-env';
 // edge needs to be compiled against a different verion of node to support
 // electron. This is still a little messy as we need to pull down both, but at
 // least it switches in the relevant version silently.
-const edge = isElectron() ? require('electron-edge') : require('edge');
+const edge = isElectron() ? require('electron-edge-js') : require('edge');
 
 export type Binding<I, O> = AsyncBinding<I, O> & SyncBinding<I, O>;
 export type AsyncBinding<I, O> = (input: I, callback?: Callback<O>) => void;
